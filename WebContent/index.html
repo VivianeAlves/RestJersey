@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="HelpApp">
+
+<head>
+    <script src="resources/angular.js"></script>
+    <script src="resources/help.js"></script>
+    <link type="text/css" rel="stylesheet" href="resources/css/materialize.min.css"  media="screen,projection"/>
+    <title>HELP APP</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body ng-controller="ChamadoController as controller">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">HELP APP</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="sass.html">{{controller.usuario}}</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+    <div>
+
+        <h5></h5>
+
+        <div ng-show="controller.chamado">
+            <label for="chamadoId">ID: </label>
+            <input type="number" id="chamadoId" ng-model="controller.chamado.id" disabled>
+            <br>
+
+            <label for="assunto">Assunto: </label>
+            <input type="text" id="assunto" ng-model="controller.chamado.assunto">
+            <br>
+
+            <label for="mensagem">Mensagem: </label>
+            <textarea rows="4" id="mensagem" ng-model="controller.chamado.mensagem"></textarea>
+            <br>
+
+            <button type="button" data-ng-click="controller.salvar()">Salvar</button>
+            <button type="button" data-ng-click="controller.chamado = undefined">Cancelar</button>
+        </div>
+
+        <div data-ng-show="!controller.chamado">
+            <button type="button" data-ng-click="controller.novo()" class="waves-effect waves-light btn">Novo Chamado</button>
+            <br>
+
+            <br>
+            <table border="1">
+                <th>ID</th>
+                <th>Assunto</th>
+                <th>Status</th>
+                <th>Mensagem</th>
+                <th>Opções</th>
+               <tr data-ng-repeat="x in controller.chamados">
+                    <td>{{x.id}}</td>
+                    <td>{{x.assunto}}</td>
+                    <td>{{x.status}}</td>
+                    <td>{{x.mensagem}}</td>
+                    <td>
+                        <button type="button" data-ng-click="controller.alterar(x)">Alterar</button>
+                        <button type="button" data-ng-click="controller.deletar(x)">Excluir</button>
+                        <button type="button" data-ng-show="x.status!=='FECHADO'" data-ng-click="controller.concluir(x)">Concluir</button>    
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+ 
+
+
+</body>
+
+</html>

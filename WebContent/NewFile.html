@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="testeapp">
+
+<head>
+    <script src="resources/angular.js"></script>
+    <script src="resources/teste.js"></script>
+    <title>New File</title>
+</head>
+
+<body ng-controller="MainCtrl">
+
+    <h1>Lista de nomes:</h1>
+    <ul>
+        <li data-ng-repeat="name in names">
+           {{name}}
+        </li>
+    </ul>
+
+
+</body>
+
+</html>
